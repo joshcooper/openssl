@@ -499,7 +499,7 @@ static int def_load_bio(CONF *conf, BIO *in, long *line)
                     OPENSSL_free(include_path);
                 }
 #else
-                next = BIO_new_file(include_path, "r");
+                next = BIO_new_file(include_path, "rb");
                 OPENSSL_free(include_path);
 #endif
 
@@ -827,7 +827,7 @@ static BIO *process_include(char *include, OPENSSL_DIR_CTX **dirctx,
         return next;
     }
 
-    next = BIO_new_file(include, "r");
+    next = BIO_new_file(include, "rb");
     return next;
 }
 
@@ -877,7 +877,7 @@ static BIO *get_next_file(const char *path, OPENSSL_DIR_CTX **dirctx)
             }
             OPENSSL_strlcat(newpath, filename, newlen);
 
-            bio = BIO_new_file(newpath, "r");
+            bio = BIO_new_file(newpath, "rb");
             OPENSSL_free(newpath);
             /* Errors when opening files are non-fatal. */
             if (bio != NULL)

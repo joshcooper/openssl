@@ -158,7 +158,7 @@ static int process_pci_value(CONF_VALUE *val,
         } else if (CHECK_AND_SKIP_PREFIX(valp, "file:")) {
             unsigned char buf[2048];
             int n;
-            BIO *b = BIO_new_file(valp, "r");
+            BIO *b = BIO_new_file(valp, "rb");
             if (!b) {
                 ERR_raise(ERR_LIB_X509V3, ERR_R_BIO_LIB);
                 X509V3_conf_err(val);
